@@ -1,0 +1,35 @@
+.header {
+
+    width: 164px;
+    border-radius: px;
+    padding: 10px 0px;
+    height: max-content;
+}
+
+.nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 7px 10px;
+    border-radius: 3px;
+    gap: 10px;
+    font-size: 12px;
+    text-decoration: none;
+    color: white;
+    font-weight: 600;
+    transition: .3ss;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.nav-link svg {
+    fill: rgba(47, 253, 92, 0.747);
+}

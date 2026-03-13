@@ -1,0 +1,35 @@
+.header-post {
+    display: flex;
+    gap: 5px;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 0px;
+}
+
+.header-post .link {
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.header-post .active {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+
+.leader-board {
+    width: 100%;
+    padding: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.leader-board .title {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.cont-leader-board {
+    display: flex;
+    gap: 10px;
+}
