@@ -3,7 +3,7 @@ body {
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: black;
+  background-color: #151518;
   color: white;
 }
 
@@ -14,10 +14,10 @@ body {
   display: flex;
   gap: 50px;
   transition: .3s;
-
+  padding: 48px 0;
 }
 
-@media (min-width: 866px) {
+@media (min-width: 985px) {
     .App {
         width: 960px;
     }

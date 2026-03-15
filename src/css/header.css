@@ -1,8 +1,6 @@
 .header {
-
-    width: 164px;
+    min-width: 184px;
     border-radius: px;
-    padding: 10px 0px;
     height: max-content;
 }
 
@@ -13,23 +11,46 @@
     gap: 4px;
 }
 
+.nav .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 32px;
+}
+
+.nav .nav-logo span {
+    opacity: .6;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.nav .active {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    color: rgb(255, 255, 255);
+}
+
+.nav .active svg {
+    fill: rgb(255, 255, 255);
+}
+
 .nav-link {
     display: flex;
     align-items: center;
-    padding: 7px 10px;
-    border-radius: 3px;
-    gap: 10px;
-    font-size: 12px;
+    padding: 16px;
+    border-radius: 18px;
+    gap: 20px;
+    font-size: 16px;
     text-decoration: none;
-    color: white;
+    color: rgba(255, 255, 255, 0.5);
     font-weight: 600;
-    transition: .3ss;
+    transition: .3s;
 }
 
+
 .nav-link:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .nav-link svg {
-    fill: rgba(47, 253, 92, 0.747);
+    fill: rgba(255, 255, 255, 0.5);
 }
