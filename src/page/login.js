@@ -1,79 +1,23 @@
-import React, { useState, useEffect, useMemo, useRef } from "react";
-import { useNavigate } from "react-router-dom";
-import "../css/register.css";
+import React, { useState } from "react";
+import { useNavigate, Link } from "react-router-dom";
 
-const Register = ({ onLogin }) => {
-  const [clans, setClans] = useState([]);
+const Login = ({ onLogin }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [about, setAbout] = useState("");
-  const [clanId, setClanId] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [isClanOpen, setIsClanOpen] = useState(false);
-  const [initialCheckDone, setInitialCheckDone] = useState(false);
 
   const navigate = useNavigate();
-  const clanDropdownRef = useRef(null);
-  const navigationInProgress = useRef(false);
 
-  useEffect(() => {
-    const registerToken = sessionStorage.getItem("registerToken");
-
-    if (!registerToken) {
-      if (!navigationInProgress.current) {
-        navigationInProgress.current = true;
-        navigate("/check-invite", { replace: true });
-      }
-      return;
-    }
-
-    fetch("https://api.khametovamilanka.online/api/clans")
-      .then((res) => res.json())
-      .then((data) => {
-        setClans(data);
-        setInitialCheckDone(true);
-      })
-      .catch(() => {
-        setErrorMessage("Не удалось загрузить кланы");
-        setInitialCheckDone(true);
-      });
-  }, [navigate]);
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (
-        clanDropdownRef.current &&
-        !clanDropdownRef.current.contains(event.target)
-      ) {
-        setIsClanOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, []);
-
-  const selectedClan = useMemo(() => {
-    return clans.find((clan) => String(clan.id) === String(clanId));
-  }, [clans, clanId]);
-
-  const register = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (isLoading || navigationInProgress.current) return;
+    if (isLoading) return;
 
     setErrorMessage("");
 
-    const registerToken = sessionStorage.getItem("registerToken");
-
-    if (!registerToken) {
-      setErrorMessage("Нет токена регистрации");
-      return;
-    }
-
-    if (!clanId || !username.trim() || !password.trim()) {
-      setErrorMessage("Заполните обязательные поля");
+    if (!username.trim() || !password.trim()) {
+      setErrorMessage("Заполните все поля");
       return;
     }
 
@@ -81,31 +25,6 @@ const Register = ({ onLogin }) => {
       setIsLoading(true);
 
       const res = await fetch(
-        "https://api.khametovamilanka.online/api/auth/register",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            registerToken,
-            clanId,
-            username: username.trim(),
-            password: password.trim(),
-            about: about.trim(),
-          }),
-        }
-      );
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        setErrorMessage(data?.error || "Ошибка регистрации");
-        setIsLoading(false);
-        return;
-      }
-
-      const loginRes = await fetch(
         "https://api.khametovamilanka.online/api/auth/login",
         {
           method: "POST",
@@ -119,41 +38,24 @@ const Register = ({ onLogin }) => {
         }
       );
 
-      const loginData = await loginRes.json();
+      const data = await res.json();
 
-      if (!loginRes.ok) {
-        setErrorMessage(loginData?.error || "Ошибка при автоматическом входе");
-        setIsLoading(false);
+      if (!res.ok) {
+        setErrorMessage(data?.error || "Ошибка входа");
         return;
       }
 
-      localStorage.setItem("userToken", loginData.token);
-      sessionStorage.removeItem("registerToken");
+      localStorage.setItem("userToken", data.token);
+      onLogin(data.user, data.token);
 
-      if (typeof onLogin === "function") {
-        onLogin(loginData.user, loginData.token);
-      }
-
-      if (!navigationInProgress.current) {
-        navigationInProgress.current = true;
-        navigate("/", { replace: true });
-      }
+      navigate("/", { replace: true });
     } catch (err) {
-      console.error("register error:", err);
+      console.error("login error:", err);
       setErrorMessage("Ошибка подключения к серверу");
+    } finally {
       setIsLoading(false);
     }
   };
-
-  if (!initialCheckDone && !errorMessage) {
-    return (
-      <div className="t5oO8-4Z">
-        <div className="_08esxaRX">
-          <div className="loading">Загрузка...</div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="t5oO8-4Z">
@@ -180,72 +82,15 @@ const Register = ({ onLogin }) => {
           </svg>
         </div>
 
-        <form className="a-AltNnW" onSubmit={register}>
+        <form className="a-AltNnW" onSubmit={handleSubmit}>
           <div className="sLmgZn7O">
-            <h1 className="I0E2SIQH">Регистрация</h1>
-            <p className="h1muhFRY">
-              Заполните данные профиля и выберите клан
-            </p>
+            <h1 className="I0E2SIQH">Вход в систему</h1>
+            <p className="h1muhFRY">Введите свои данные для входа</p>
           </div>
 
           {errorMessage && <div className="gwOnNlDG">{errorMessage}</div>}
 
           <div className="K6LUzmSd">
-            <div className="F-eZP3Z3">
-              <label className="i8qYWkc1">Клан</label>
-              <p className="ZQreRHNk">Клан после регистрации изменить нельзя</p>
-
-              <div className="clan-dropdown" ref={clanDropdownRef}>
-                <button
-                  type="button"
-                  className={`snTcI1jZ clan-trigger ${isClanOpen ? "open" : ""}`}
-                  onClick={() => setIsClanOpen((prev) => !prev)}
-                >
-                  {selectedClan ? (
-                    <div className="clan-trigger-content">
-                      <img
-                        src={selectedClan.image_url}
-                        alt={selectedClan.name}
-                        className="clan-avatar"
-                      />
-                      <span>{selectedClan.name}</span>
-                    </div>
-                  ) : (
-                    <div className="clan-trigger-content clan-placeholder">
-                      <div className="clan-avatar clan-avatar-empty">?</div>
-                      <span>Нажми чтобы выбрать</span>
-                    </div>
-                  )}
-                </button>
-
-                {isClanOpen && (
-                  <div className="clan-menu">
-                    {clans.map((clan) => (
-                      <button
-                        key={clan.id}
-                        type="button"
-                        className={`clan-option ${
-                          String(clan.id) === String(clanId) ? "active" : ""
-                        }`}
-                        onClick={() => {
-                          setClanId(String(clan.id));
-                          setIsClanOpen(false);
-                          setErrorMessage("");
-                        }}
-                      >
-                        <img
-                          src={clan.image_url}
-                          alt={clan.name}
-                          className="clan-avatar"
-                        />
-                        <span>{clan.name}</span>
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-
             <div className="F-eZP3Z3">
               <label className="i8qYWkc1">Имя пользователя</label>
               <input
@@ -272,19 +117,6 @@ const Register = ({ onLogin }) => {
                 }}
               />
             </div>
-
-            <div className="F-eZP3Z3">
-              <label className="i8qYWkc1">О себе</label>
-              <textarea
-                className="snRcI1jZ qnTextarea"
-                placeholder="Напишите немного о себе"
-                value={about}
-                onChange={(e) => {
-                  setAbout(e.target.value);
-                  setErrorMessage("");
-                }}
-              />
-            </div>
           </div>
 
           <button
@@ -292,12 +124,18 @@ const Register = ({ onLogin }) => {
             className="WsNIl9yN s-rIVNft kZamU7XS FVEEba1t Iy7f3zBR"
             disabled={isLoading}
           >
-            {isLoading ? "Регистрация..." : "Зарегистрироваться"}
+            {isLoading ? "Вход..." : "Войти"}
           </button>
+
+          <div className="ZQrfRHNk auth-links">
+            <p>
+              Нет аккаунта? <Link to="/check-invite">Получить инвайт</Link>
+            </p>
+          </div>
         </form>
       </div>
     </div>
   );
 };
 
-export default Register;
+export default Login;

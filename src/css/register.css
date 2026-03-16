@@ -1,0 +1,262 @@
+.t5oO8-4Z {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+._08esxaRX {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 358px;
+    max-width: 100%;
+}
+
+.r8lsLZcX {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 48px;
+}
+
+.a-AltNnW {
+    width: 100%;
+}
+
+.sLmgZn7O {
+    margin-bottom: 48px;
+}
+
+.I0E2SIQH {
+    font-size: 24px;
+    font-weight: 500;
+    color: #f5f5f5;
+    margin: 0 0 8px;
+}
+
+.h1muhFRY {
+    font-size: 16px;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0;
+}
+
+.K6LUzmSd {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.F-eZP3Z3 {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.i8qYWkc1 {
+  font-size: 16px;
+  font-weight: 400;
+  color: #f5f5f5;
+}
+
+.snTcI1jZ {
+  width: 100%;
+  background: transparent;
+  border: none;
+  font-size: 16px;
+  font-family: inherit;
+  color: #f5f5f5;
+  outline: none;
+  transition: border-color .2s ease;
+  box-sizing: border-box;
+}
+
+.Iy7f3zBR {
+  margin-top: 36px;
+}
+
+.FVEEba1t {
+  width: 100%;
+}
+
+.kZamU7XS {
+  height: 48px;
+  padding: 0 24px;
+  font-size: 16px;
+  border-radius: 24px;
+}
+
+.s-rIVNft {
+  background: #ffffff;
+  color: #000000;
+}
+
+.WsNIl9yN {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 500;
+  transition: opacity .2s ease,background .2s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.ZQreRHNk {
+    margin: 0;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: start;
+}
+
+.ZQrfRHNk {
+  margin-top: 14px;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  text-align: center;
+}
+
+.ZQrfRHNk a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.gwOnNlDG {
+  padding: 16px;
+  margin-bottom: 24px;
+  background: #ef44441a;
+  border: 1px solid rgba(239,68,68,.3);
+  border-radius: 12px;
+  color: #ef4444;
+  font-size: 14px;
+  text-align: center;
+}
+
+.snRcI1jZ::placeholder {
+  color: rgba(255, 255, 255, 0.35);
+}
+
+select.snRcI1jZ {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+select.snTcI1jZ option {
+  background: #111111;
+  color: #f5f5f5;
+}
+
+textarea {
+  min-height: 120px;
+  max-height: 200px;
+  resize: vertical;
+}
+
+.qnTextarea {
+  min-height: 120px;
+  max-height: 200px;
+  resize: vertical;
+}
+
+.clan-dropdown {
+  position: relative;
+  width: 100%;
+}
+
+.clan-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  text-align: left;
+}
+
+.clan-trigger-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.clan-placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.clan-avatar {
+  width: 64px;
+  height: 64px;
+  font-size: 24px;
+  font-weight: 700;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.clan-avatar-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.45);
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+}
+
+.clan-arrow {
+  margin-left: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.clan-arrow.open {
+  transform: rotate(180deg);
+}
+
+.clan-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  width: 100%;
+  background: #101114;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 8px;
+  box-sizing: border-box;
+  z-index: 20;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.clan-option {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 12px;
+  color: #f5f5f5;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 15px;
+  text-align: left;
+  transition: background 0.2s ease;
+}
+
+.clan-option:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.clan-option.active {
+  background: rgba(255, 255, 255, 0.08);
+}
